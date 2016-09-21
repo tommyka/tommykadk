@@ -8,6 +8,7 @@
 		"gulp": "^3.8.11",
 		"browser-sync": "^2.5.3",
 		"gulp-less": "*",
-		"gulp-typescript": "*"
+		"gulp-typescript": "*",
+		"through2": "*"
 	}
 }

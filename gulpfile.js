@@ -1,4 +1,7 @@
 var gulp = require('gulp');
+var path = require('path');
+var fs = require("fs");
+var through = require('through2')
 var typescript = require('gulp-typescript');
 var less = require('gulp-less');
 var browser = require('browser-sync');
@@ -45,11 +48,72 @@ gulp.task('assets', function(){
 		.pipe(gulp.dest('dist/'));
 });
 
+var trimrex = /\.[^/.]+$/;
+
+gulp.task('content-images', function(){
+	return gulp.src(['content/**/*.jpg','content/**/*.png', 'content/**/*.gif'], {base:"content"})
+		.pipe(gulp.dest("dist/content"));
+});
+
+gulp.task('content', function(){
+	var projects = [];
+	var lastfile = null;
+
+	return gulp.src(['content/**/*.json'], {})
+		.pipe(through.obj(function(chunk, encoding, callback){
+			//readfile
+			var json = JSON.parse(chunk.contents.toString());
+			var filename = path.basename(chunk.path);
+			var filenameNoExt = filename.replace(trimrex, "");
+			var folder = chunk.path.replace(filename, '');
+
+			var files = fs.readdirSync(folder);
+			files.splice(files.indexOf(filename), 1);
+
+
+			json.path = chunk.path;
+			json.gallery = [];
+
+			for (var i = 0; i < files.length; i++) {
+				var f = files[i];
+				var frel = path.join(path.relative(chunk.cwd, folder),f).replace(/\\/g, "/");
+
+				if(f != filename){
+					if(filenameNoExt.toLowerCase() == f.replace(trimrex, "").toLowerCase()){
+						json.image = frel;
+					}else{
+						json.gallery.push(frel);
+					}
+				}
+			};
+
+			projects.push (json);
+
+			lastfile = chunk;
+
+			//empty callback omits file
+			callback();
+		}, function(callback){
+			//flush / end stream
+			var clone = lastfile.clone({contents:false});
+			clone.path = path.join(lastfile.base, "content/data.json");
+
+			clone.contents = new Buffer(JSON.stringify(projects));
+			this.push(clone);
+
+			callback();
+		}))
+		.pipe(gulp.dest("dist/"));
+});
+
+
+
 gulp.task('watch', function(){
 	gulp.watch(['src/script/**/*.ts'],['compile-ts', 'reload']);
 	gulp.watch(['src/style/**/*.less'], ['less', 'reload']);
 	gulp.watch(['src/html/*.html'], ['html', 'reload']);
 	gulp.watch(['src/assets/**/*.*'], ['assets', 'reload']);
+	gulp.watch(['content/**/*.*'], ['content', 'content-images', 'reload']);
 });
 
 gulp.task('reload', function(){
@@ -57,4 +121,4 @@ gulp.task('reload', function(){
 });
 
 
-gulp.task('default', ['less', 'assets', 'compile-ts', 'html', 'browsersync', 'watch']);
+gulp.task('default', ['content', 'content-images','less', 'assets', 'compile-ts', 'html', 'browsersync', 'watch']);
