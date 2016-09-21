@@ -44,6 +44,11 @@ class Component extends EventDispatcher {
 		return element;
 	}
 
+	protected setText(text:string, ref?:string){
+		var target:HTMLElement = ref ? this.getRef(ref) : this.element;
+		target.textContent = text;
+	};
+
 	protected getRef(name:string):HTMLElement{
 		return this.refs[name];
 	}

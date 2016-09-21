@@ -13,6 +13,15 @@ class ProjectItem extends Component {
 			children:[{
 				type:"img",
 				ref:"img"
+			},{
+				type:"div",
+				ref:"overlay",
+				sclass:["overlay"],
+				children:[{
+					type:"div",
+					sclass:["title"],
+					ref:"text"
+				}]
 			}]
 		});
 
@@ -24,5 +33,6 @@ class ProjectItem extends Component {
 			console.log("data", data,data.image);
 			this.img.src = data.image;
 		}
+		this.setText(data.title, "text");
 	}
 }

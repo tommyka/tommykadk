@@ -23,3 +23,44 @@ body { background:white; margin: 0;}
 		vertical-align: top;
 	}
 }
+
+.project-item { 
+	max-width: 300px;
+	border: 1px solid black;
+	padding: 10px;
+	position:relative;
+
+	display:inline-block;
+
+	img{
+		width:100%;
+	}
+
+	.overlay{
+		position:absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		left: 0px;
+		top:0px;
+		bottom:0px;
+		right:0px;
+		background:rgba(0,0,0,.5);
+		opacity: 0;
+		color:white;
+		transition: opacity .4s;
+	}
+	.title { 
+		margin-top: -20px;
+		transition: margin-top .6s;
+	}
+
+	&:hover{
+		.overlay{
+			opacity: 1;
+		}
+		.title{
+			margin-top:0;
+		}
+	}
+}
