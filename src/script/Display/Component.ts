@@ -1,12 +1,15 @@
 /// <reference path="../Event/EventDispatcher.ts" />
 class Component extends EventDispatcher {
 	
-	private children:HTMLElement[] = [];
+	private children:Component[] = [];
 	private refs:{[name:string]: HTMLElement} = {}
 	public element:HTMLElement = null;
 
-	constructor() {
+	constructor(target?:HTMLElement) {
 		super();
+		if(target){
+			this.element = target;
+		}
 	}
 
 	public create(structure:iStructure){
@@ -51,6 +54,23 @@ class Component extends EventDispatcher {
 
 	protected getRef(name:string):HTMLElement{
 		return this.refs[name];
+	}
+
+	public addChild(child:Component){
+		console.log("element", child);
+		
+		this.children.push(child);
+		this.element.appendChild(child.element);
+	}
+
+	public rmeoveChild(child:Component){
+		for (var i = 0; i < this.children.length; i++) {
+			if(this.children[i] == child){
+				this.children.splice(i, 1);
+				this.element.removeChild(child.element);
+				break;
+			}
+		}
 	}
 }
 

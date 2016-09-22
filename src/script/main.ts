@@ -2,6 +2,9 @@
 /// <reference path="Display/Component.ts" />
 /// <reference path="Display/ProjectItem.ts" />
 
+var contentView:Component = new Component(<HTMLElement>document.querySelector(".content"));
+
+
 var model:Model = new Model();
 model.load("content/data.json");
 model.addEventListener("complete", function(){
@@ -13,7 +16,7 @@ model.addEventListener("complete", function(){
 		var img:ProjectItem = new ProjectItem();
 		img.setData(d);
 
-		document.body.appendChild(img.element);
+		contentView.addChild(img);
 	}
 
 });
