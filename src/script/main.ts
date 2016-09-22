@@ -15,10 +15,15 @@ list.addEventListener("project_clicked", function(e:iEvent){
 	detail.setData(e.data);
 	detail.show();
 	contentView.addChild(detail);
+	list.hide();
 });
 contentView.addChild(list);
 
 var detail:ProjectView = new ProjectView();
+detail.addEventListener("goback",function(){
+	detail.hide();
+	list.show();
+});
 
 
 

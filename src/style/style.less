@@ -1,6 +1,6 @@
-@base: #e0e3d9;
+@base: #252525;
 
-body { background:white; margin: 0; font-family: 'Lato', sans-serif;}
+body { background:white; margin: 0; font-family: 'Lato', sans-serif; background-color:#F1F2F1}
 * {box-sizing: border-box;}
 
 h1, h2, h3, h4 {
@@ -15,6 +15,7 @@ h1, h2, h3, h4 {
 	height: 100%;
 	top:0px;
 	background-color: @base;
+	color:white;
 
 	padding: 20px;
 }
@@ -27,6 +28,7 @@ h1, h2, h3, h4 {
 		border-radius: 50%;
 		overflow:hidden;
 		vertical-align: top;
+		border:2px white solid;
 	}
 }
 .content {
@@ -40,6 +42,7 @@ h1, h2, h3, h4 {
 	margin-left: 20px;
 
 	display:inline-block;
+	cursor:pointer;
 
 	img{
 		width:100%;
@@ -63,6 +66,7 @@ h1, h2, h3, h4 {
 		margin-top: -20px;
 		transition: margin-top .6s;
 		font-size: 30px;
+		text-align: center;
 	}
 
 	&:hover{
@@ -76,6 +80,26 @@ h1, h2, h3, h4 {
 }
 
 .project-content{
+	.back {
+		position:fixed;
+		left: 40px;
+		top: 40px;
+		padding: 10px;
+		background:white;
+		opacity: .1;
+		transition: opacity .5s;
+		cursor: pointer;
+
+		&:hover{
+			opacity: 1;
+		}
+	}
+	.images { 
+		max-width: 1200px;
+		padding: 20px;
+		margin:auto;
+		background-color: white;
+	}
 	.info-box {
 		position:fixed;
 		left: 40px;
