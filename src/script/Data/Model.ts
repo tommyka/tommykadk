@@ -32,5 +32,6 @@ interface iProjectData{
 	title:string,
 	description:string,
 	image?:string,
+	url?:string,
 	gallery?:string[]
 }

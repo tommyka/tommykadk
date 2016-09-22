@@ -2,6 +2,7 @@
 
 class ProjectItem extends Component {
 	
+	public data:iProjectData;
 	private img:HTMLImageElement;
 
 	constructor() {
@@ -26,9 +27,12 @@ class ProjectItem extends Component {
 		});
 
 		this.img = <HTMLImageElement> this.getRef("img");
+
+		this.routeEvents();
 	}
 
 	setData(data:iProjectData){
+		this.data = data;
 		if(data.image){
 			console.log("data", data,data.image);
 			this.img.src = data.image;

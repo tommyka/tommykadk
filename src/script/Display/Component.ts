@@ -9,11 +9,23 @@ class Component extends EventDispatcher {
 		super();
 		if(target){
 			this.element = target;
+		}else{
+			this.create({
+				type:"div"
+			});
 		}
 	}
 
 	public create(structure:iStructure){
 		this.element = this.render(structure);
+	}
+
+	protected routeEvents(){
+		var self = this;
+		console.log("route event");
+		this.element.addEventListener("click", function(e){
+			self.dispatchEvent({type:"click", data:e});
+		});
 	}
 
 	private render(stuc:iStructure):HTMLElement{
@@ -42,14 +54,24 @@ class Component extends EventDispatcher {
 					element.appendChild(this.render(<iStructure>stuc.children[j]));
 				}
 			}
-		}
+		}/*
+		if(stuc.attr){
+			for (var key in stuc.attr) {
+				var tkey:any = key;
+				this.element.setAttribute(key, stuc.attr[tkey]);
+			}
+		}*/
 
 		return element;
 	}
 
 	protected setText(text:string, ref?:string){
 		var target:HTMLElement = ref ? this.getRef(ref) : this.element;
-		target.textContent = text;
+		if(target){
+			target.textContent = text;
+		}else{
+			console.log("ref not found", ref);
+		}
 	};
 
 	protected getRef(name:string):HTMLElement{
@@ -58,7 +80,7 @@ class Component extends EventDispatcher {
 
 	public addChild(child:Component){
 		console.log("element", child);
-		
+
 		this.children.push(child);
 		this.element.appendChild(child.element);
 	}
@@ -81,4 +103,5 @@ interface iStructure{
 	sclass?:string[];
 	children?:string|iStructure[];
 	text?:string;
+	attr?:Object;
 }

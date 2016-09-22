@@ -6,7 +6,7 @@ var typescript = require('gulp-typescript');
 var less = require('gulp-less');
 var browser = require('browser-sync');
 
-var tsProject = typescript.createProject('tsconfig.json');
+
 
 var ts_main = "src/script/main.ts";
 var ts_output = "dist/assets/scripts/";
@@ -25,6 +25,7 @@ gulp.task('browsersync', function(){
 
 gulp.task('compile-ts', function(){
 	console.log("compile typescirp");
+	var tsProject = typescript.createProject('tsconfig.json');
 	var ts = gulp.src(ts_main)
 		.pipe(typescript(tsProject));
 
@@ -69,9 +70,6 @@ gulp.task('content', function(){
 
 			var files = fs.readdirSync(folder);
 			files.splice(files.indexOf(filename), 1);
-
-
-			json.path = chunk.path;
 			json.gallery = [];
 
 			for (var i = 0; i < files.length; i++) {
