@@ -17,7 +17,14 @@ class ImageComp extends Component {
 		var self = this;
 
 		this.img = <HTMLImageElement>this.getRef("img");
-		this.img.addEventListener("complete", function(e){
+		
+		this.img.addEventListener("load", function(e){
+			console.log("image loaded", self.img.naturalHeight,self.img.naturalWidth,self.img.naturalHeight > self.img.naturalWidth)
+			if(self.img.naturalHeight > self.img.naturalWidth){
+				self.img.classList.add("portrait");
+			}else{
+				self.img.classList.remove("portrait");
+			}
 		});
 	}
 

@@ -5,6 +5,7 @@ class ListView extends Page {
 	
 	private model:Model;
 
+	private projects:ProjectItem[] = [];
 	constructor() {
 		super();
 		this.create({
@@ -34,8 +35,25 @@ class ListView extends Page {
 				console.log("item-click", e);
 				self.handle_item_click(e);				
 			});
+			this.projects.push(item);
 			this.addChild(item);
 		}
+	}
+
+	public show(){
+		super.show();
+		for (var i = 0; i < this.projects.length; i++) {
+			var p:ProjectItem = this.projects[i];
+			this.fadein(p.element, i*100);
+		}
+	}
+	private fadein(target:HTMLElement, delay:number){
+		target.style.display = "none";
+			setTimeout(function(){
+				target.classList.add("fadeinmove");
+				target.style.display = "";
+
+			}, delay);
 	}
 
 	private handle_item_click(e:iEvent){

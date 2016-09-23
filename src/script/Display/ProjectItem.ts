@@ -25,8 +25,12 @@ class ProjectItem extends Component {
 				}]
 			}]
 		});
+		var self= this;
 
 		this.img = <HTMLImageElement> this.getRef("img");
+		this.img.addEventListener("load", function(){
+			self.dispatchEvent({type:"complete"});
+		});
 
 		this.routeEvents();
 	}
@@ -34,8 +38,8 @@ class ProjectItem extends Component {
 	setData(data:iProjectData){
 		this.data = data;
 		if(data.image){
-			console.log("data", data,data.image);
 			this.img.src = data.image;
+
 		}
 		this.setText(data.title, "text");
 	}

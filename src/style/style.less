@@ -34,18 +34,22 @@ h1, h2, h3, h4 {
 .content {
 	width: calc(~"100% - 300px");
 }
+.list-view{
+	padding-top: 20px;
+}
 .project-item { 
 	max-width: 270px;
-	border: 1px solid black;
-	padding: 10px;
+	box-shadow: 0 0 8px rgba(0,0,0,.3);
 	position:relative;
-	margin-left: 20px;
+	margin-left: 40px;
+	margin-bottom: 40px;
 
 	display:inline-block;
 	cursor:pointer;
 
 	img{
 		width:100%;
+		vertical-align: top;
 	}
 
 	.overlay{
@@ -94,6 +98,7 @@ h1, h2, h3, h4 {
 			opacity: 1;
 		}
 	}
+
 	.images { 
 		max-width: 1200px;
 		padding: 20px;
@@ -103,21 +108,67 @@ h1, h2, h3, h4 {
 	.info-box {
 		position:fixed;
 		left: 40px;
-		bottom: 40px;
+		bottom: 20px;
 		width: 400px;
-		padding: 40px;
+		padding: 30px;
 		background:white;
 		box-shadow: 0px 0px 16px rgba(0,0,0, .3);
+		z-index: 10;
 
 		h2 { margin-top: 0px;}
-		.description {
-			margin-bottom: 20px;
+		.link {
+			margin-top: 20px;
+		}
+		/*.description, .link{
+			transition: height .5s;
+			overflow:hidden;
+		}*/
+		.minimize {
+			position:absolute;
+			right: 20px;
+			top:20px;
+		}
+
+		&.minimized{
+			padding: 15px 15px 15px 30px;
+			.description, .link{
+				display:none;
+			}
+			h2 {
+				margin-bottom: 0;
+			}
 		}
 
 	}
+	
 }
 .image {
+	text-align: center;
 	img{
 		width:100%;
+		&.portrait{
+			max-width: 50%;
+		}
 	}
+}
+
+.fadeinmove {
+	animation: fadeinmove .5s;
+	animation-fill-mode: backwards;
+}
+.fadein {
+	animation: fadein 1s;
+	animation-fill-mode: backwards;
+}
+.animdelay { 
+	animation-delay: .5s;
+}
+@keyframes fadeinmove {
+    from {opacity: 0; transform: translateY(-50px)}
+    to {opacity: 1; transform: translateY(0px)}
+}
+
+@keyframes fadein {
+    from {opacity: 0; }
+    to {opacity: 1; }
 }

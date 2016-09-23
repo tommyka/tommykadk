@@ -22,7 +22,6 @@ class Component extends EventDispatcher {
 
 	protected routeEvents(){
 		var self = this;
-		console.log("route event");
 		this.element.addEventListener("click", function(e){
 			self.dispatchEvent({type:"click", data:e});
 		});
@@ -54,7 +53,11 @@ class Component extends EventDispatcher {
 					element.appendChild(this.render(<iStructure>stuc.children[j]));
 				}
 			}
-		}/*
+		}
+		if(stuc.click){
+			element.addEventListener("click", stuc.click);
+		}
+		/*
 		if(stuc.attr){
 			for (var key in stuc.attr) {
 				var tkey:any = key;
@@ -103,5 +106,6 @@ interface iStructure{
 	sclass?:string[];
 	children?:string|iStructure[];
 	text?:string;
+	click?:any;
 	attr?:Object;
 }

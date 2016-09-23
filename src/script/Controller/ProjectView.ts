@@ -7,6 +7,7 @@ class ProjectView extends Page {
 
 	constructor() {
 		super();
+		var self = this;
 		var s:iStructure = {
 			type:"div",
 			sclass:["project-content"],
@@ -17,8 +18,16 @@ class ProjectView extends Page {
 				text:"< Gå tilbake"
 			},{
 				type:"div",
-				sclass:["info-box"],
+				sclass:["info-box", "fadeinmove", "animdelay"],
+				ref:"box",
 				children:[{
+					type: "div",
+					sclass: ["minimize"],
+					text: "x",
+					click:function(e:any){
+						self.toggleMinimize();
+					}
+				},{
 					type:"h2",
 					ref:"title",
 				},{
@@ -36,7 +45,7 @@ class ProjectView extends Page {
 				}]
 			},{
 				type:"div",
-				sclass:["images"],
+				sclass:["images", "fadein"],
 				ref:"content"
 			}]
 		};
@@ -63,6 +72,15 @@ class ProjectView extends Page {
 		}
 	}
 
+	private toggleMinimize(){
+		var box:HTMLElement = this.getRef("box");
+		if(box.classList.contains("minimized")){
+			box.classList.remove("minimized");
+		}else{
+			box.classList.add("minimized");
+		}
+	}
+
 	public setData(data:iProjectData){
 		this.data = data;
 		this.setText(data.title,"title");
@@ -70,6 +88,7 @@ class ProjectView extends Page {
 		var link:HTMLAnchorElement = <HTMLAnchorElement>this.getRef("link");
 		link.href = data.url;
 		link.target = "_blank";
+		link.style.display = data.url ? "inline" : "none";
 
 		var container:HTMLElement = this.getRef("content");
 
