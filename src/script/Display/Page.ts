@@ -4,7 +4,7 @@ class Page extends Component {
 		super();
 	}
 
-	public show(){
+	public show(path?:string){
 		if(this.element){
 			this.element.style.display = "block";
 		}

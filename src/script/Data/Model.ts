@@ -26,7 +26,18 @@ class Model extends EventDispatcher {
 
 		req.send();
 	}
+
+	public getProject(title:string):iProjectData{
+		for (var i = 0; i < this.data.length; i++) {
+			if(this.data[i].title == title){
+				return this.data[i];
+			}
+		}
+
+		return null;
+	}
 }
+
 
 interface iProjectData{
 	title:string,

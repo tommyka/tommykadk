@@ -4,6 +4,7 @@ class ProjectView extends Page {
 	private data:iProjectData;
 	private images:ImageComp[] = [];
 	private comps:ImageComp[] = [];
+	private model:Model;
 
 	constructor() {
 		super();
@@ -79,6 +80,22 @@ class ProjectView extends Page {
 		}else{
 			box.classList.add("minimized");
 		}
+	}
+
+	public show(path?:string){
+		super.show(path);
+
+		if(path && this.model){
+			var data = this.model.getProject(path);
+			console.log("projectview", path, data);
+			if(data){
+				this.setData(data);
+			}
+		}
+	}
+
+	public setModel(model:Model){
+		this.model = model;
 	}
 
 	public setData(data:iProjectData){

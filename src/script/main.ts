@@ -3,27 +3,37 @@
 /// <reference path="Display/ProjectItem.ts" />
 /// <reference path="Controller/ListView.ts" />
 /// <reference path="Controller/ProjectView.ts" />
+/// <reference path="Controller/Router.ts" />
 
 var model:Model = new Model();
 
 var contentView:Component = new Component(<HTMLElement>document.querySelector(".content"));
 
+var router:Router = new Router();
+
 //views
 var list:ListView = new ListView();
 list.setModel(model);
 list.addEventListener("project_clicked", function(e:iEvent){
-	detail.setData(e.data);
+	router.setURL("project/"+ e.data.title);
+	/*detail.setData(e.data);
 	detail.show();
 	contentView.addChild(detail);
-	list.hide();
+	list.hide();*/
 });
 contentView.addChild(list);
+router.addPage(list, "", true);
 
 var detail:ProjectView = new ProjectView();
 detail.addEventListener("goback",function(){
-	detail.hide();
-	list.show();
+	router.setURL("");
+	/*detail.hide();
+	list.show();*/
 });
+detail.setModel(model);
+detail.hide();
+contentView.addChild(detail);
+router.addPage(detail,"project");
 
 
 
