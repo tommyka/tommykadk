@@ -14,6 +14,12 @@ class Router extends EventDispatcher {
 		});
 	}
 
+	public init(){
+		if(location.hash != ''){
+			this.changePage(location.hash.substr(1));
+		}
+	}
+
 	private changePage(path:string){
 		path = path == "" ? "-empty-" : path;
 		var split = path.split("/");

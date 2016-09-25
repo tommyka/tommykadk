@@ -6,6 +6,9 @@
 /// <reference path="Controller/Router.ts" />
 
 var model:Model = new Model();
+model.addEventListener("complete", function(){
+	router.init();
+});
 
 var contentView:Component = new Component(<HTMLElement>document.querySelector(".content"));
 
@@ -16,6 +19,7 @@ var list:ListView = new ListView();
 list.setModel(model);
 list.addEventListener("project_clicked", function(e:iEvent){
 	router.setURL("project/"+ e.data.title);
+
 	/*detail.setData(e.data);
 	detail.show();
 	contentView.addChild(detail);
