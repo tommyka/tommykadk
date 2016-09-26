@@ -113,13 +113,38 @@ class ProjectView extends Page {
 			this.releashComp(this.images.pop());
 		}
 
+		while (container.childNodes.length != 0){
+			container.removeChild(container.childNodes[0]);
+		}
+
 		for (var i = 0; i < data.gallery.length; i++) {
 			var gi = data.gallery[i];
-			var img = this.getComp();
-			img.src = gi;
-			this.images.push(img);
 
-			container.appendChild(img.element);
+			if(gi.indexOf("vimeo") != -1){
+				//Fast solution to playing videos.
+				//TODO: Rewrite with own vimeo object/class
+
+				var wrapper:HTMLElement = document.createElement("div");
+				wrapper.classList.add("embedvideo");
+				container.appendChild(wrapper);
+
+				var path = gi.replace(/(vimeo.com)/g, "player.$1/video");
+				console.log(path);
+				var vimeo:HTMLIFrameElement = document.createElement("iframe");
+				vimeo.width = 640 + "";
+				vimeo.height = 360 + "";
+				vimeo.src = path;
+				wrapper.appendChild(vimeo);
+
+			}else{
+				var img = this.getComp();
+				img.src = gi;
+				this.images.push(img);
+
+				container.appendChild(img.element);
+			}
+
+			
 
 		}
 

@@ -70,7 +70,9 @@ gulp.task('content', function(){
 
 			var files = fs.readdirSync(folder);
 			files.splice(files.indexOf(filename), 1);
-			json.gallery = [];
+			if(!json.gallery){
+				json.gallery = [];
+			}
 
 			for (var i = 0; i < files.length; i++) {
 				var f = files[i];
