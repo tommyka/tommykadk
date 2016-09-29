@@ -48,10 +48,11 @@ class ListView extends Page {
 		}
 	}
 	private fadein(target:HTMLElement, delay:number){
-		target.style.display = "none";
+		target.style.visibility = "hidden";
+		target.classList.remove("fadeinmove");
 			setTimeout(function(){
 				target.classList.add("fadeinmove");
-				target.style.display = "";
+				target.style.visibility = "";
 
 			}, delay);
 	}

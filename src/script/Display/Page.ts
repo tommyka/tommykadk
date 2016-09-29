@@ -6,7 +6,7 @@ class Page extends Component {
 
 	public show(path?:string){
 		if(this.element){
-			this.element.style.display = "block";
+			this.element.style.display = "";
 		}
 	}
 
