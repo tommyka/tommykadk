@@ -87,7 +87,6 @@ class ProjectView extends Page {
 
 		if(path && this.model){
 			var data = this.model.getProject(path);
-			console.log("projectview", path, data);
 			if(data){
 				this.setData(data);
 			}
@@ -129,7 +128,6 @@ class ProjectView extends Page {
 				container.appendChild(wrapper);
 
 				var path = gi.replace(/(vimeo.com)/g, "player.$1/video");
-				console.log(path);
 				var vimeo:HTMLIFrameElement = document.createElement("iframe");
 				vimeo.width = 640 + "";
 				vimeo.height = 360 + "";
@@ -143,12 +141,6 @@ class ProjectView extends Page {
 
 				container.appendChild(img.element);
 			}
-
-			
-
 		}
-
-
-		console.log("new setData", data);
 	}
 }
