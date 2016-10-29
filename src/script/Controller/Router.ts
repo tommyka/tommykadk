@@ -10,20 +10,20 @@ class Router extends EventDispatcher {
 		var self = this;
 		window.addEventListener("hashchange", function(e){
 			console.log(e);
-			self.changePage(decodeURIComponent(location.hash.substr(1)));
+			self.readURL();
 		});
 	}
 
 	public init(){
 		if(location.hash != ''){
-			this.changePage(decodeURIComponent(location.hash.substr(1)));
+			this.readURL();
 		}
 	}
+
 
 	private changePage(path:string){
 		path = path == "" ? "-empty-" : path;
 		var split = path.split("/");
-		console.log("changepage", path, split);
 
 		var newpage =this.pages[split[0]];
 
@@ -48,5 +48,9 @@ class Router extends EventDispatcher {
 
 	public setURL(url:string){
 		location.hash = url;
+	}
+	private readURL(){
+
+		this.changePage(decodeURIComponent(location.hash.substr(1)));
 	}
 }

@@ -27,9 +27,9 @@ class Model extends EventDispatcher {
 		req.send();
 	}
 
-	public getProject(title:string):iProjectData{
+	public getProject(id:string):iProjectData{
 		for (var i = 0; i < this.data.length; i++) {
-			if(this.data[i].title == title){
+			if(this.data[i].id == id){
 				return this.data[i];
 			}
 		}
@@ -40,6 +40,7 @@ class Model extends EventDispatcher {
 
 
 interface iProjectData{
+	id:string,
 	title:string,
 	description:string,
 	image?:string,

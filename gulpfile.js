@@ -60,6 +60,8 @@ gulp.task('content', function(){
 	var projects = [];
 	var lastfile = null;
 
+	var spaceCleaner = /\s/g;
+
 	return gulp.src(['content/**/*.json'], {})
 		.pipe(through.obj(function(chunk, encoding, callback){
 			//readfile
@@ -74,6 +76,8 @@ gulp.task('content', function(){
 				json.gallery = [];
 			}
 
+			var id = json.title.toLowerCase().replace(spaceCleaner, '-').replace(/å/g,'a').replace(/æ/g,'ae').replace(/ø/g, 'o');
+			json.id = id;
 			for (var i = 0; i < files.length; i++) {
 				var f = files[i];
 				var frel = path.join(path.relative(chunk.cwd, folder),f).replace(/\\/g, "/");
