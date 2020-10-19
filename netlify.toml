@@ -2,5 +2,5 @@
   publish = "dist"
   command = "npm run build"
 [build.environment]
-  NPM_VERSION = "12.19.0"
+  NODE_VERSION = "12.19.0"
   NPM_VERSION = "6.12.0"
