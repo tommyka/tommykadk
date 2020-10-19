@@ -102,7 +102,7 @@ gulp.task('content', function(){
 			var clone = lastfile.clone({contents:false});
 			clone.path = path.join(lastfile.base, "content/data.json");
 
-			clone.contents = new Buffer(JSON.stringify(projects));
+			clone.contents = new Buffer.from(JSON.stringify(projects));
 			this.push(clone);
 
 			callback();
@@ -126,3 +126,4 @@ gulp.task('reload', function(){
 
 
 gulp.task('default', ['content', 'content-images','less', 'assets', 'compile-ts', 'html', 'browsersync', 'watch']);
+gulp.task('build', ['content', 'content-images','less', 'assets', 'compile-ts', 'html']);
