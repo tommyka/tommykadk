@@ -1,17 +1,25 @@
 {
-	"name": "Tommykadk",
-	"version": "0.0.2",
+	"name": "tommykadk",
+	"version": "0.0.3",
 	"private": true,
 	"scripts": {
-		"build": "gulp build"
+		"generateJson": "node generateJson.js",
+		"start": "parcel src/index.html",
+		"build": "parcel build src/index.html"
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"gulp": "^3.8.11",
-		"browser-sync": "^2.5.3",
-		"gulp-less": "3.1.0",
-		"gulp-typescript": "2.14.1",
-		"through2": "4.0.2",
-		"typescript": "2.6.2"
+		"less": "^3.12.2",
+		"parcel-bundler": "1.12.4",
+		"parcel-plugin-static-files-copy": "^2.5.0",
+		"typescript": "^4.0.3"
+	},
+	"staticFiles": {
+        "staticPath": [
+            {
+                "staticPath": "content",
+                "staticOutDir": "content"
+            }
+		]
 	}
 }
