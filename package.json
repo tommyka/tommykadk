@@ -1,15 +1,17 @@
 {
-	"name":"Tommykadk",
-	"version":"0.0.2",
+	"name": "Tommykadk",
+	"version": "0.0.2",
 	"private": true,
-	"scripts": {"build": "gulp build"},
-	"dependencies":{
+	"scripts": {
+		"build": "gulp build"
 	},
-	"devDependencies":{
+	"dependencies": {},
+	"devDependencies": {
 		"gulp": "^3.8.11",
 		"browser-sync": "^2.5.3",
-		"gulp-less": "*",
-		"gulp-typescript": "*",
-		"through2": "*"
+		"gulp-less": "3.1.0",
+		"gulp-typescript": "2.14.1",
+		"through2": "4.0.2",
+		"typescript": "2.6.2"
 	}
 }
