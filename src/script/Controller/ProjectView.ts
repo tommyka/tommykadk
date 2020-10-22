@@ -1,4 +1,8 @@
-/// <reference path="../Display/Image.ts" />
+import Model, { iProjectData } from "../Data/Model";
+import ImageComp from "../Display/Image";
+import Page from "../Display/Page";
+import {iStructure} from "../Display/Component";
+
 class ProjectView extends Page {
 	
 	private data:iProjectData;
@@ -144,3 +148,5 @@ class ProjectView extends Page {
 		}
 	}
 }
+
+export default ProjectView;

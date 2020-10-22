@@ -1,4 +1,13 @@
-/// <reference path="../Event/EventDispatcher.ts" />
+import EventDispatcher from '../Event/EventDispatcher';
+
+export interface iProjectData{
+	id:string,
+	title:string,
+	description:string,
+	image?:string,
+	url?:string,
+	gallery?:string[]
+}
 
 class Model extends EventDispatcher {
 	
@@ -38,12 +47,4 @@ class Model extends EventDispatcher {
 	}
 }
 
-
-interface iProjectData{
-	id:string,
-	title:string,
-	description:string,
-	image?:string,
-	url?:string,
-	gallery?:string[]
-}
+export default Model;

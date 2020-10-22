@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "yarn generateJson && yarn build"
 [build.environment]
-  NODE_VERSION = "8.17.0"
-  NPM_VERSION = "5.00.0"
+  YARN_VERSION = "1.9.4"
+  YARN_FLAGS = "--no-ignore-optional"

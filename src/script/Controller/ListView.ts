@@ -1,6 +1,8 @@
-/// <reference path="../Display/ProjectItem.ts" />
-/// <reference path="../Display/Page.ts" />
-/// <reference path="../Data/Model.ts" />
+import Model from "../Data/Model";
+import Page from "../Display/Page";
+import ProjectItem from "../Display/ProjectItem";
+import {iEvent} from "../Event/EventDispatcher";
+
 class ListView extends Page {
 	
 	private model:Model;
@@ -61,3 +63,5 @@ class ListView extends Page {
 		this.dispatchEvent({type:"project_clicked", data: e.target.data})
 	}
 }
+
+export default ListView;
