@@ -1,3 +1,5 @@
+import Component from "./Component";
+
 class Page extends Component {
 	
 	constructor() {
@@ -16,3 +18,5 @@ class Page extends Component {
 		}
 	}
 }
+
+export default Page;

@@ -1,7 +1,7 @@
 /**
  * @author mrdoob / http://mrdoob.com/
  */
-interface iEvent{
+export interface iEvent{
 	type:string;
 	target?:any;
 	data?:any
@@ -82,3 +82,5 @@ class EventDispatcher {
 
 	}
 }
+
+export default EventDispatcher;

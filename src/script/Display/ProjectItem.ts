@@ -1,4 +1,5 @@
-/// <reference path="../Data/Model.ts" />
+import { iProjectData } from "../Data/Model";
+import Component from "./Component";
 
 class ProjectItem extends Component {
 	
@@ -44,3 +45,5 @@ class ProjectItem extends Component {
 		this.setText(data.title, "text");
 	}
 }
+
+export default ProjectItem;

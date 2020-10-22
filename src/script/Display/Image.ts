@@ -1,3 +1,5 @@
+import Component from "./Component";
+
 class ImageComp extends Component {
 	
 	public img:HTMLImageElement;
@@ -35,5 +37,6 @@ class ImageComp extends Component {
 	public get src():string{
 		return this.img.src;
 	}
-
 }
+
+export default ImageComp;

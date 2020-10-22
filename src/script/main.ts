@@ -1,9 +1,9 @@
-/// <reference path="Data/model.ts" />
-/// <reference path="Display/Component.ts" />
-/// <reference path="Display/ProjectItem.ts" />
-/// <reference path="Controller/ListView.ts" />
-/// <reference path="Controller/ProjectView.ts" />
-/// <reference path="Controller/Router.ts" />
+import ListView from './Controller/ListView';
+import ProjectView from './Controller/ProjectView';
+import Router from './Controller/Router';
+import Model from './Data/Model';
+import Component from './Display/Component';
+import { iEvent } from './Event/EventDispatcher';
 
 var model:Model = new Model();
 model.addEventListener("complete", function(){
@@ -22,7 +22,7 @@ list.addEventListener("project_clicked", function(e:iEvent){
 });
 contentView.addChild(list);
 router.addPage(list, "", true);
-
+	
 var detail:ProjectView = new ProjectView();
 detail.addEventListener("goback",function(){
 	router.setURL("");

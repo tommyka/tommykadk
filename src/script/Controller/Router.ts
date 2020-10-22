@@ -1,5 +1,6 @@
-/// <reference path="../Display/Page.ts" />
-/// <reference path="../Event/EventDispatcher.ts" />
+import Page from "../Display/Page";
+import EventDispatcher from "../Event/EventDispatcher";
+
 class Router extends EventDispatcher {
 	
 	private pages:{[route:string]:Page} = {};
@@ -54,3 +55,5 @@ class Router extends EventDispatcher {
 		this.changePage(decodeURIComponent(location.hash.substr(1)));
 	}
 }
+
+export default Router;

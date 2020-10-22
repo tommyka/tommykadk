@@ -1,4 +1,15 @@
-/// <reference path="../Event/EventDispatcher.ts" />
+import EventDispatcher from "../Event/EventDispatcher";
+
+export interface iStructure{
+	type:string;
+	ref?:string;
+	id?:string;
+	sclass?:string[];
+	children?:string|iStructure[];
+	text?:string;
+	click?:any;
+	attr?:Object;
+}
 class Component extends EventDispatcher {
 	
 	private children:Component[] = [];
@@ -99,13 +110,5 @@ class Component extends EventDispatcher {
 	}
 }
 
-interface iStructure{
-	type:string;
-	ref?:string;
-	id?:string;
-	sclass?:string[];
-	children?:string|iStructure[];
-	text?:string;
-	click?:any;
-	attr?:Object;
-}
+export default Component;
+
